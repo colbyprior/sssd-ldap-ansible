@@ -1,0 +1,34 @@
+[sssd]
+services = nss, pam, ssh, sudo
+config_file_version = 2
+domains = default
+
+[nss]
+homedir_substring = /home
+
+[domain/default]
+# If you have large groups (IE 50+ members), you should set this to True
+ignore_group_members = False
+debug_level=3
+cache_credentials = True
+id_provider = ldap
+auth_provider = ldap
+access_provider = ldap
+chpass_provider = ldap
+ldap_schema = rfc2307bis
+ldap_search_base = {{ search_base }}
+# We strongly recommend ldaps here.
+ldap_uri = ldaps://{{ ldap_host }}
+ldap_tls_reqcert = demand
+ldap_tls_cacert = {{ cert_file }}
+ldap_access_filter = {{ access_filter}}
+enumerate = false
+access_provider = ldap
+ldap_user_member_of = memberof
+ldap_user_gecos = cn
+ldap_user_uuid = nsUniqueId
+ldap_group_uuid = nsUniqueId
+# This is really important as it allows SSSD to respect nsAccountLock
+ldap_account_expire_policy = rhds
+ldap_access_order = filter, expire
+ldap_user_ssh_public_key = nsSshPublicKey

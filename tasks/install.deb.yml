@@ -1,0 +1,37 @@
+---
+
+- name: install pre-requisite packages
+  apt:
+    name: {{item}}
+  vars:
+    packages:
+    - sssd
+
+# /etc/sssd/sssd.conf
+# chmod 600
+#
+# /etc/nsswitch.conf
+#
+# /etc/ssh/sshd_config
+#
+#
+# test with
+# sss_ssh_authorizedkeys
+#
+# /usr/share/ca-certificates/ldap_prod_aws_auscert_org_au.crt
+#
+# update-ca-certificates
+#
+#
+
+- name: Enable sssd
+  service:
+    name: sssd
+    state: started
+    enabled: yes
+
+- name: Enable sshd
+  service:
+    name: sshd
+    state: restarted
+    enabled: yes
