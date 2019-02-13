@@ -20,7 +20,7 @@ ldap_search_base = {{ search_base }}
 # We strongly recommend ldaps here.
 ldap_uri = ldaps://{{ ldap_host }}
 ldap_tls_reqcert = demand
-ldap_tls_cacert = {{ cert_file }}
+ldap_tls_cacert = /etc/ssl/certs/ldap.crt
 ldap_access_filter = {{ access_filter}}
 enumerate = false
 access_provider = ldap

@@ -7,22 +7,26 @@
     packages:
     - sssd
 
-# /etc/sssd/sssd.conf
-# chmod 600
-#
+- name: add sssd configuration file
+  template:
+   src: sssd.conf.j2
+   dest: /etc/sssd/sssd.conf
+   owner: root
+   group: root
+   mode: 0600
+
+- name: add ldap public certificate
+  template:
+   src: ldap.crt.j2
+   dest: /usr/share/ca-certificates/ldap.crt
+   owner: root
+   group: root
+   mode: 0660
+
+
 # /etc/nsswitch.conf
 #
 # /etc/ssh/sshd_config
-#
-#
-# test with
-# sss_ssh_authorizedkeys
-#
-# /usr/share/ca-certificates/ldap_prod_aws_auscert_org_au.crt
-#
-# update-ca-certificates
-#
-#
 
 - name: Enable sssd
   service:
