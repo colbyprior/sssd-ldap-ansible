@@ -2,7 +2,7 @@
 
 - name: install pre-requisite packages
   apt:
-    name: {{item}}
+    name: "{{ packages }}"
   vars:
     packages:
     - sssd
@@ -21,8 +21,15 @@
    dest: /usr/share/ca-certificates/ldap.crt
    owner: root
    group: root
-   mode: 0660
+   mode: 0611
 
+- name: add sshd configuration file
+  template:
+   src: sshd_config.j2
+   dest: /etc/ssh/sshd_config
+   owner: root
+   group: root
+   mode: 0611
 
 # /etc/nsswitch.conf
 #
