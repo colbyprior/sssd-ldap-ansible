@@ -31,6 +31,14 @@
    group: root
    mode: 0611
 
+- name: add pam.d config file
+  template:
+   src: systemd-user.j2
+   dest: /etc/pam.d/systemd-user
+   owner: root
+   group: root
+   mode: 0611
+
 # /etc/nsswitch.conf
 #
 # /etc/ssh/sshd_config

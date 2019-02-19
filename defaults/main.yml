@@ -1,6 +1,8 @@
-search_base: ou=People,dc=example,dc=com
+user_search_base: ou=People,dc=example,dc=com
+group_search_base: ou=Groups,dc=example,dc=com
 ldap_host: ldap.example.com
 access_filter: (|(memberof=cn=sudoers,ou=Groups,dc=example,dc=com))
+ldap_group: sudoers
 public_key: |
   -----BEGIN PRIVATE KEY-----
   -----END PRIVATE KEY-----
