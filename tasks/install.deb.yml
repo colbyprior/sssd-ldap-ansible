@@ -31,6 +31,14 @@
    group: root
    mode: 0611
 
+- name: add sudoers file
+  template:
+   src: 50-sssd.j2
+   dest: /etc/sudoers.d/50-sssd
+   owner: root
+   group: root
+   mode: 0611
+
 - name: add pam.d config file
   template:
    src: systemd-user.j2
